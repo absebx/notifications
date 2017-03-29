@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
 
+declare var FCMPlugin;
 
 @Component({
   templateUrl: 'app.html'
@@ -16,6 +17,14 @@ export class MyApp {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
+
+      //cuando la plataforma está lista, se usa esto
+      FCMPlugin.getToken(function(token){
+        alert(token);
+      },function(err){
+        console.log("No se pudo obtener token: "+err);
+      });
+
       statusBar.styleDefault();
       splashScreen.hide();
     });
